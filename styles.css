@@ -1,0 +1,400 @@
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6vh;
+    height: 100%;
+    max-height: 100%;
+    font-family: Arial, serif;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+body.light-theme {
+    background: #fff;
+    color: #000;
+}
+
+body.dark-theme {
+    background: #242f3e;
+    color: #fff;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    position: relative;
+    display: flex;
+    flex: 1 0 auto;
+    padding: 10px;
+    height: 0;
+    flex-direction: row;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+    .chart-container {
+        width: 45vw;
+        height: 48vh;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+@media (max-width: 600px) {
+    .chart-container {
+        width: 100vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (orientation: portrait) and (max-device-width: 600px) {
+    .chart-container {
+        width: 100vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+.chart-title {
+    font-weight: bold;
+    font-size: 1.6em;
+}
+
+.canvas-wrapper {
+    height: 0;
+    flex: 1 0 auto;
+    position: relative;
+}
+.x-range-slider canvas{
+    position: absolute;
+    left:0;
+    padding: 5px 10px;
+    z-index: 101;
+    top:0;
+    height: 100%;
+    width: 100%;
+}
+
+.x-range-slider {
+    flex: 0 1 auto;
+}
+
+.legend {
+    flex: 0 1 auto;
+}
+
+.canvas-wrapper > canvas {
+    position: absolute;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+footer {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    box-shadow: -5px -1px 2px 1px #000;
+}
+
+.link {
+    font-size: 1.6em;
+    cursor: pointer;
+    color: #108BE3;
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+    user-select: none;
+    border: #333 1px solid;
+    border-radius: 5px;
+    min-width: 10vw;
+    max-width: 20vw;
+    padding: 10px 20px;
+    box-shadow: 1px 1px 3px 1px #000;
+    z-index: 1000;
+    flex-direction: column;
+    -webkit-transition: left 0.1s;
+    -moz-transition: left 0.1s;
+    -ms-transition: left 0.1s;
+    -o-transition: left 0.1s;
+    transition: left 0.1s;
+}
+
+.light-theme #tooltip {
+    background: #fff;
+}
+
+.dark-theme #tooltip {
+    background: #242f3e;
+
+}
+
+#tooltip .tooltip-x-value {
+    font-size: 1.2em;
+    font-weight: bold;
+
+}
+
+#tooltip .tooltip-values {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.x-range-slider{
+    height: 5vh;
+    width: 100%;
+    position: relative;
+}
+.light-theme .x-range-slider .slider-area{
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: #f3f9fb;
+    opacity: 1;
+    position: absolute;
+}
+.dark-theme .x-range-slider .slider-area{
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: #1f2a38;
+    opacity: 1;
+    position: absolute;
+}
+.light-theme .x-range-slider .range{
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    border-top: 2px solid #dee9ee;
+    border-bottom: 2px solid #dee9ee;
+    z-index: 100;
+    background: white;
+    opacity:1;
+
+    position: absolute;
+}
+.dark-theme .x-range-slider .range{
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    border-top: 2px solid #40566b;
+    border-bottom: 2px solid #40566b;
+    z-index: 100;
+    background: #242f3e;
+    opacity:1;
+
+    position: absolute;
+}
+.x-range-slider .slider{
+    height: 5vh;
+    position: absolute;
+    width: 100%;
+    left:0;
+    z-index: 101;
+    top:0;
+}
+.x-range-slider input[type=range]{
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+    outline: none;
+    pointer-events: none;
+}
+
+.x-range-slider input::-webkit-slider-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    outline: 0;
+}
+
+.x-range-slider input::-moz-range-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -moz-appearance: none;
+    width: 9px;
+}
+
+.x-range-slider input::-moz-range-track {
+    position: relative;
+    z-index: -1;
+    border: 0;
+}
+.x-range-slider input:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+}
+.x-range-slider input[type=range]::-moz-focus-outer {
+    border: 0;
+}
+
+
+.light-theme input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 5vh;
+    width: 20px;
+    margin-bottom: 0.4vh;
+    background: #dee9ee;
+    cursor: pointer;
+}
+.dark-theme input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 5vh;
+    width: 20px;
+    margin-bottom: 0.4vh;
+    background: #40566b;
+    cursor: pointer;
+}
+
+.light-theme input[type=range]::-moz-range-thumb {
+    height: 5vh;
+    width: 20px;
+    margin-bottom: 0.4vh;
+    background: #dee9ee;
+    cursor: pointer;
+}
+.dark-theme input[type=range]::-moz-range-thumb {
+    height: 5vh;
+    width: 20px;
+    margin-bottom: 0.4vh;
+    background: #40566b;
+    cursor: pointer;
+}
+.light-theme input[type=range]::-ms-thumb {
+    height: 5vh;
+    width: 1vw;
+    margin-bottom: 0.4vh;
+    background: #dee9ee;
+    cursor: pointer;
+}
+.dark-theme input[type=range]::-ms-thumb {
+    height: 5vh;
+    width: 20px;
+    margin-bottom: 0.4vh;
+    background: #40566b;
+    cursor: pointer;
+}
+
+#tooltip .tooltip-values .tooltip-value .tooltip-series-value {
+    font-weight: bold;
+}
+
+#tooltip .tooltip-values .tooltip-value .tooltip-series-name {
+    font-size: 0.9em;
+}
+
+#tooltip .tooltip-values .tooltip-value {
+    display: flex;
+    font-size: 1.2em;
+    flex-direction: column;
+    margin: 0 5px;
+}
+
+.dark-theme .legend-item {
+    border: 1px solid #343f4e;
+}
+
+.light-theme .legend-item {
+    border: 1px solid #f2f2f2;
+}
+
+.legend-item {
+    display: inline-block;
+    border: 1px solid #343f4e;
+    border-radius: 20px;
+    position: relative;
+    padding: 10px 20px 10px 50px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1.4em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.legend-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.legend-item:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.legend-item input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.legend-item .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    transform: rotate(50deg);
+}
