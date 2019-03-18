@@ -95,6 +95,7 @@ body {
 
 .legend {
     flex: 0 1 auto;
+    margin-top:10px;
 }
 
 .canvas-wrapper > canvas {
