@@ -489,7 +489,6 @@ const App = (function app() {
                 const screenX = scaleX.convert(data[this.xRange[0]] + step * i);
                 ctx.fillText(Utils.format(data[this.xRange[0]] + step * i, this.config.axis.x.labels.format), screenX, this.height - 30);
             }
-            debugger;
             if (!this.config.prevScaleX || this.needRedraw
                 || this.config.prevScaleX.domain()[1] === this.config.scaleX.domain()[1]
                 && this.config.prevScaleX.domain()[0] === this.config.scaleX.domain()[0]) {
